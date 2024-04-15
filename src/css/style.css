@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #edefec;
+}
+
+.container {
+  margin: 0 auto;
+  width: 600px;
+  height: 600px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-area {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+}
+
+.geolocationText {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.input-area {
+  padding: 10px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  z-index: 999;
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  padding: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -90%);
+}
+
+.hidden {
+  display: none;
+}
+
+.modalText {
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.modalInput {
+  padding: 10px;
+}
+
+.modalBtn {
+  padding: 10px;
+  background-color: cornflowerblue;
+  color: #fff;
+  margin-top: 10px;
+  border: none;
+}
+
+.modalBtn:hover {
+  background-color: royalblue;
+}
