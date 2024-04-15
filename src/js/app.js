@@ -1,4 +1,6 @@
-class MessageClass {
+import geolocationEnter from "./geolocationEnter";
+
+export default class MessageClass {
     constructor() {
         this.messageArea = document.querySelector('.message-area');
     }
@@ -6,23 +8,6 @@ class MessageClass {
     init() {
         this.inputListener();
     }
-
-    // navigator() {
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(
-    //              (data) => {
-    //                 const { latitude, longitude } = data.coords;
-    //                 this.latitude = latitude;
-    //                 this.longitude = longitude;
-    //             },
-    //              (err) => {
-    //                 this.navigatorError();
-    //                 console.log(err);
-    //             },
-    //             { enableHighAccuracy: true }
-    //         );
-    //     }
-    // }
 
     async navigator() {
         if (navigator.geolocation) {
@@ -36,7 +21,6 @@ class MessageClass {
             } catch (err) {
                 this.navigatorError();
                 console.log(err);
-                throw err;
             }
         }
     }
@@ -67,9 +51,9 @@ class MessageClass {
         document.body.append(modal);
 
         modalOkBtn.addEventListener('click', () => {
-            const str = modalInput.value.split(',');
-            this.latitude = str[0];
-            this.longitude = str[1].trim();
+            const result = geolocationEnter(modalInput.value);
+            this.latitude = result.latitude;
+            this.longitude = result.longitude;
 
             modal.classList.add('hidden');
         })
@@ -91,10 +75,8 @@ class MessageClass {
     }
 
     async addMessage(text) {
-        await this.navigator();
-        // this.navigator();
-
         if (this.latitude === undefined || this.longitude === undefined) {
+            await this.navigator();
             return;
         }
         const messageContainer = document.createElement('div');
@@ -115,8 +97,6 @@ class MessageClass {
 
 }
 
-
-
-messageClass = new MessageClass()
+const messageClass = new MessageClass();
 
 messageClass.init();
